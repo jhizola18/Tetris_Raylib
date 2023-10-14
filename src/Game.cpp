@@ -153,13 +153,13 @@ void Game::rotateTetro()
 	if (!gameOver)
 	{
 		currTetro.Rotate();
-		if (isTetroOutside())
+		if (isTetroOutside() || tetroFits() == false)
 		{
 			currTetro.UndoRotation();
 		}
-		else {
-			PlaySound(rotateSound);
-		}
+		
+		PlaySound(rotateSound);
+		
 	}
 	
 }
@@ -172,6 +172,7 @@ void Game::lockTetro()
 	{
 		board.grid[item.row][item.column] = currTetro.id;
 	}
+
 	currTetro = nextTetro;
 	if (tetroFits() == false)
 	{
